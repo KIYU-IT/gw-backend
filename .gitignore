@@ -38,6 +38,11 @@ Thumbs.db
 **/CLAUDE.md
 CLAUDE.md
 
+# Environment Variables
+**/.env
+.env
+.env.*
+
 # Logs
 logs/
 *.log
