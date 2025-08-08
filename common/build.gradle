@@ -1,0 +1,37 @@
+plugins {
+    id 'java-library'
+}
+
+dependencies {
+    // Spring Boot Starter (공통 의존성)
+    api 'org.springframework.boot:spring-boot-starter'
+    api 'org.springframework.boot:spring-boot-starter-web'
+    api 'org.springframework.boot:spring-boot-starter-validation'
+    api 'org.springframework.boot:spring-boot-starter-actuator'
+    
+    // Jackson
+    api 'com.fasterxml.jackson.core:jackson-databind'
+    api 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+    
+    // Lombok - 모든 서비스에서 사용
+    api 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    
+    // SpringDoc OpenAPI 3 (Swagger)
+    api 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
+    
+    // Flyway
+    api 'org.flywaydb:flyway-core'
+    api 'org.flywaydb:flyway-mysql'
+    
+    // Configuration processor
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    
+    // Test
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+// 이 모듈은 실행 가능한 jar가 아님
+jar {
+    enabled = true
+}

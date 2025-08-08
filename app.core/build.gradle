@@ -1,0 +1,59 @@
+plugins {
+    id 'org.springframework.boot'
+    id 'java'
+    id 'org.flywaydb.flyway' version '9.22.3'
+}
+
+dependencies {
+    // Common module (공통 의존성 포함)
+    implementation project(':common')
+    
+    // Lombok annotation processor (common에서 api로 제공되지만 프로세서는 별도 필요)
+    annotationProcessor 'org.projectlombok:lombok'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    
+    // MyBatis (각 서비스별 독립적 DB 설정)
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
+    
+    // Database (각 서비스별 독립적 DB 설정)
+    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+    
+    // Security
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    
+    // JWT
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+    
+    // Test
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+    testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'
+    testRuntimeOnly 'com.h2database:h2'
+}
+
+// MyBatis XML 파일을 빌드에 포함
+sourceSets {
+    main {
+        resources {
+            srcDirs = ['src/main/java', 'src/main/resources']
+            includes = ['**/*.xml', '**/*.yml', '**/*.properties']
+        }
+    }
+}
+
+bootJar {
+    archiveBaseName = 'app.core'
+    archiveVersion = '0.0.1-SNAPSHOT'
+}
+
+flyway {
+    url = 'jdbc:mariadb://localhost:3306/core?useUnicode=true&characterEncoding=utf8mb4&serverTimezone=Asia/Seoul'
+    user = 'groupware'
+    password = 'groupware123'
+    schemas = ['core']
+    locations = ['classpath:db/migration/core']
+    baselineOnMigrate = true
+    validateMigrationNaming = true
+}
