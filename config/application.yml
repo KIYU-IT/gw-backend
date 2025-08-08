@@ -1,7 +1,46 @@
+# 공통 설정 (모든 프로필과 애플리케이션에 적용)
+
+spring:
+  jackson:
+    time-zone: Asia/Seoul
+    serialization:
+      write-dates-as-timestamps: false
+      
+  flyway:
+    enabled: false
+    baseline-on-migrate: true
+    validate-on-migrate: true
+
+    
+# 액추에이터 설정
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+      
+# Swagger/OpenAPI 설정
+springdoc:
+  api-docs:
+    path: /api-docs
+    enabled: true
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+    operations-sorter: method
+    tags-sorter: alpha
+    display-request-duration: true
+  show-actuator: true
+  default-produces-media-type: application/json
+  default-consumes-media-type: application/json
+
+# 공통 커스텀 설정
 common:
   file:
-    base-path: c:/nextTrading/files
-    token-key: dev
-
+    base-path: /opt/platform/files
+    token-key: platform-file-token
   jwt:
-    secret: 설정필요
+    secret: ${JWT_SECRET:PlatformDefaultSecretKey2025!@#}

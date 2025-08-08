@@ -1,0 +1,41 @@
+# app-core 애플리케이션 전용 설정
+
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3306/groupware?useUnicode=true&characterEncoding=utf8mb4&serverTimezone=Asia/Seoul
+    username: ${CORE_DB_USERNAME:root}
+    password: ${CORE_DB_PASSWORD:qwer1234}
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      connection-timeout: 5000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+      initialization-fail-timeout: 1
+    
+server:
+  port: 8080
+  servlet:
+    context-path: /api/v1
+
+# MyBatis 설정
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    call-setters-on-nulls: true
+    default-fetch-size: 100
+    default-statement-timeout: 30
+    cache-enabled: false
+    use-generated-keys: true
+  mapper-locations: classpath:kr/co/platform/**/*.xml
+  type-aliases-package: kr.co.platform.core.**.entity, kr.co.platform.core.**.dto
+
+# 로깅 설정
+logging:
+  level:
+    root: INFO
+    kr.co.platform: INFO
+    org.springframework.web: WARN
+    org.springframework.boot: INFO
+    org.mybatis: WARN
