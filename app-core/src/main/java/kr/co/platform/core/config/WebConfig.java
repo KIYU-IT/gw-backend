@@ -6,16 +6,16 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * Web MVC 설정
- * 
+ *
  * @author 박성우
  * @date 2025.08.03
  */
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
-    
+
     /**
      * CORS 매핑 설정
-     * 
+     *
      * @param registry CORS 레지스트리
      */
     @Override
