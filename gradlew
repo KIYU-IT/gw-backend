@@ -85,6 +85,15 @@ done
 APP_BASE_NAME=${0##*/}
 APP_HOME=$( cd "${APP_HOME:-./}" && pwd -P ) || exit
 
+# Force use of project-local JDK
+if [ -d "$APP_HOME/bin/jdk-17" ] ; then
+    export JAVA_HOME="$APP_HOME/bin/jdk-17"
+    echo "Using project-local JDK: $JAVA_HOME"
+else
+    echo "WARNING: Project JDK not found at $APP_HOME/bin/jdk-17"
+    echo "Please ensure JDK 17 is installed in the bin directory"
+fi
+
 # Use the maximum available, or set MAX_FD != -1 to use that value.
 MAX_FD=maximum
 
