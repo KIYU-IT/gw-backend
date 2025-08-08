@@ -1,10 +1,10 @@
 spring:
   application:
     name: app-core
-    
+
   profiles:
     active: ${SPRING_PROFILES_ACTIVE:}  # 환경변수로 프로필 지정
-    
+
   # 외부 설정 파일 import
   # Spring Boot 3의 config import 기능 사용
   config:
@@ -19,12 +19,12 @@ spring:
   config:
     activate:
       on-profile: default
-      
+
   datasource:
     url: jdbc:mariadb://localhost:3306/groupware?useUnicode=true&characterEncoding=utf8mb4&serverTimezone=Asia/Seoul
     username: root
     password: qwer1234
-    
+
 server:
   port: 8080
   servlet:
