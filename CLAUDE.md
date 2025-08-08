@@ -4,11 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a Groupware (그룹웨어) system with MSA architecture:
+This is a platform (그룹웨어) system with MSA architecture:
 - **Frontend**: React-based SPA located in `/gwFront` directory
 - **Backend**: Spring Boot MSA located in `/backend` directory
   - **common**: Shared library module (non-executable)
-  - **app.core**: Main business logic service (전자결재, 사용자, 일정, 게시판)
+  - **app-core**: Main business logic service (전자결재, 사용자, 일정, 게시판)
   - **app.streamhub**: Real-time communication service (WebSocket-based)
 
 The frontend project consists of two templates:
@@ -117,7 +117,7 @@ cd /mnt/d/gw/backend
 ./gradlew clean build
 
 # Run specific service
-./gradlew :app.core:bootRun
+./gradlew :app-core:bootRun
 ./gradlew :app.streamhub:bootRun
 
 # Run tests
@@ -206,5 +206,5 @@ private String fieldName;
 
 ### MyBatis Mapper 구조
 - Mapper 인터페이스와 XML 파일은 같은 패키지에 위치
-- 예: `kr.co.groupware.domain.schedule.mapper` 패키지에 `ScheduleMapper.java`와 `ScheduleMapper.xml`이 함께 존재
-- mapper-locations 설정: `classpath:kr/co/groupware/**/*.xml`
+- 예: `kr.co.platform.domain.schedule.mapper` 패키지에 `ScheduleMapper.java`와 `ScheduleMapper.xml`이 함께 존재
+- mapper-locations 설정: `classpath:kr/co/platform/**/*.xml`

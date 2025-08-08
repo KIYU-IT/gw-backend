@@ -1,5 +1,3 @@
-rootProject.name = 'groupware'
+rootProject.name = 'platform'
 
-include 'common'
-include 'app.core'
-include 'app.streamhub'
+include 'app-core'

@@ -1,7 +1,7 @@
 services:
   mariadb:
     image: mariadb:10.11
-    container_name: groupware-mariadb
+    container_name: platform-mariadb
     restart: unless-stopped
     ports:
       - "${DB_PORT:-3306}:3306"
@@ -27,12 +27,12 @@ services:
       retries: 5
       start_period: 30s
     networks:
-      - groupware-network
+      - platform-network
 
 volumes:
   mariadb_data:
     driver: local
 
 networks:
-  groupware-network:
+  platform-network:
     driver: bridge

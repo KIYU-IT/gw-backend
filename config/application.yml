@@ -1,0 +1,7 @@
+common:
+  file:
+    base-path: c:/nextTrading/files
+    token-key: dev
+
+  jwt:
+    secret: 설정필요
