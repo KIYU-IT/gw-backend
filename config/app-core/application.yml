@@ -13,7 +13,7 @@ spring:
       idle-timeout: 600000
       max-lifetime: 1800000
       initialization-fail-timeout: 1
-    
+
 server:
   port: 8080
   servlet:
@@ -29,6 +29,6 @@ mybatis:
     cache-enabled: false
     use-generated-keys: true
   mapper-locations: classpath:kr/co/platform/**/*.xml
-  type-aliases-package: kr.co.platform.core.**.entity, kr.co.platform.core.**.dto
+  type-aliases-package: kr.co.platform.core.**.entity
 
 # 로깅 설정은 logback-spring.xml에서 관리
