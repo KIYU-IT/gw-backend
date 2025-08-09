@@ -51,30 +51,58 @@
         </rollingPolicy>
     </appender>
 
-    <!-- Default root logger configuration -->
+    <!-- 기본 설정 (프로필이 지정되지 않은 경우) -->
     <root level="INFO">
         <appender-ref ref="CONSOLE"/>
     </root>
 
-    <!-- Default loggers -->
-    <logger name="kr.co.platform" level="DEBUG"/>
-    <logger name="org.springframework.web" level="DEBUG"/>
+    <!-- 기본 로거 레벨 -->
+    <logger name="kr.co.platform" level="INFO"/>
+    <logger name="org.springframework.web" level="INFO"/>
     <logger name="org.springframework.boot" level="INFO"/>
+    <logger name="org.mybatis" level="WARN"/>
+    <logger name="org.apache.ibatis" level="WARN"/>
 
-    <!-- Spring Profile 별 설정 -->
-    <springProfile name="dev">
+    <!-- 개발 환경 (dev, local, default) -->
+    <springProfile name="dev,local,default">
         <logger name="kr.co.platform" level="DEBUG"/>
+        <logger name="kr.co.platform.core.config" level="INFO"/> <!-- EnvConfig 등은 INFO로 유지 -->
+        <logger name="org.springframework.web" level="DEBUG"/>
         <logger name="org.mybatis" level="DEBUG"/>
         <logger name="jdbc.sqlonly" level="DEBUG"/>
+        <logger name="jdbc.sqltiming" level="OFF"/>
+        <logger name="jdbc.resultsettable" level="OFF"/>
     </springProfile>
 
-    <springProfile name="prod">
+    <!-- Docker 환경 -->
+    <springProfile name="docker">
         <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+        <logger name="kr.co.platform" level="INFO"/>
+        <logger name="org.springframework" level="WARN"/>
+        <logger name="org.mybatis" level="WARN"/>
+    </springProfile>
+
+    <!-- 운영 환경 -->
+    <springProfile name="prod">
+        <root level="WARN">
             <appender-ref ref="CONSOLE"/>
             <appender-ref ref="FILE"/>
             <appender-ref ref="ERROR_FILE"/>
         </root>
         <logger name="kr.co.platform" level="INFO"/>
         <logger name="org.springframework" level="WARN"/>
+        <logger name="org.mybatis" level="WARN"/>
+        <logger name="com.zaxxer.hikari" level="WARN"/>
+    </springProfile>
+
+    <!-- 테스트 환경 -->
+    <springProfile name="test">
+        <root level="WARN">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+        <logger name="kr.co.platform" level="DEBUG"/>
+        <logger name="org.springframework.test" level="DEBUG"/>
     </springProfile>
 </configuration>

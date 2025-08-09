@@ -33,7 +33,9 @@ public class EnvConfig {
                                 System.setProperty(entry.getKey(), entry.getValue());
                             });
 
-            log.debug("Environment variables loaded from .env file");
+            log.info(
+                    "Environment variables loaded from .env file (count: {})",
+                    dotenv.entries().size());
         } catch (Exception e) {
             log.error("Failed to load .env file: {}", e.getMessage());
         }

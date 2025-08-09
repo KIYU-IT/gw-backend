@@ -31,11 +31,4 @@ mybatis:
   mapper-locations: classpath:kr/co/platform/**/*.xml
   type-aliases-package: kr.co.platform.core.**.entity, kr.co.platform.core.**.dto
 
-# 로깅 설정
-logging:
-  level:
-    root: INFO
-    kr.co.platform: INFO
-    org.springframework.web: WARN
-    org.springframework.boot: INFO
-    org.mybatis: WARN
+# 로깅 설정은 logback-spring.xml에서 관리
